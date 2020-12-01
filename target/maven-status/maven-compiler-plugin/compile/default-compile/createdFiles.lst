@@ -1,0 +1,7 @@
+com/aws/dgac/api/connector/DGacUtils.class
+com/aws/dgac/api/Query.class
+com/aws/dgac/api/connector/FileStore.class
+com/aws/dgac/api/BusinessDomains.class
+com/aws/dgac/api/connector/Store.class
+com/aws/dgac/api/App.class
+com/aws/dgac/api/APIApplication.class
