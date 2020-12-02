@@ -192,7 +192,7 @@
           },
           {
             "roles": [
-              "marketing"
+              "dataScientist"
             ],
             "dgac": [
               "hash"
@@ -222,12 +222,30 @@
         }
       ],
       "DGac": {
-        "columnMasking": [],
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "redact"
+            ]
+          }
+        ],
         "rowFiltering": {},
         "quality": []
       }
     },
     {
+      "average_note": 0,
       "id": "phoneNumber",
       "name": "Phone Number",
       "description": "Phone Numbers",
@@ -246,12 +264,31 @@
         }
       ],
       "DGac": {
-        "columnMasking": []
+        "columnMasking": [
+          {
+            "roles": [
+              "customerCare",
+              "superUser"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
       },
       "rowFiltering": {},
       "quality": []
     },
     {
+      "average_note": 0,
       "id": "addressUnitNumber",
       "description": "Houser or Unit Number",
       "name": "Address - Unit Number",
@@ -269,12 +306,31 @@
         }
       ],
       "DGac": {
-        "columnMasking": []
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
       },
       "rowFiltering": {},
       "quality": []
     },
     {
+      "average_note": 0,
       "id": "addressStreet",
       "name": "Address - Street",
       "description": "Address - Street",
@@ -289,12 +345,31 @@
         }
       ],
       "DGac": {
-        "columnMasking": []
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
       },
       "rowFiltering": {},
       "quality": []
     },
     {
+      "average_note": 0,
       "id": "location",
       "name": "Location",
       "description": "Location",
@@ -312,7 +387,17 @@
         }
       ],
       "DGac": {
-        "columnMasking": []
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "dataScientist"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          }
+        ]
       },
       "rowFiltering": {},
       "quality": []
@@ -381,6 +466,10 @@
       "id": "marketing",
       "name": "Marketing",
       "description": "Promotes Products and Services"
+    },
+    {
+      "sql": "select name, msisdn, mailId, startTime, cellId, calledPartyNumber from cdr limit 10",
+      "role": "superUser"
     }
   ],
   "dgac": [

@@ -9,6 +9,7 @@ package com.aws.dgac.api;
 import java.util.Properties;
 import com.aws.dgac.api.connector.FileStore;
 import com.aws.dgac.api.connector.Store;
+import com.aws.dgac.api.interceptor.Interceptor;
 
 import org.restlet.Component;
 import org.restlet.data.Protocol;

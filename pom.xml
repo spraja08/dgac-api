@@ -81,6 +81,24 @@
       <artifactId>aws-java-sdk-sagemakerruntime</artifactId>
       <version>1.11.800</version>
     </dependency>
+    
+    <dependency>
+      <groupId>com.github.jsqlparser</groupId>
+      <artifactId>jsqlparser</artifactId>
+      <version>3.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.facebook.presto</groupId>
+      <artifactId>presto-jdbc</artifactId>
+      <version>0.235</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>4.5</version>
+   </dependency>
 
   </dependencies>
 
