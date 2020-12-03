@@ -113,6 +113,116 @@
         }
       ],
       "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
+    },
+    {
+      "average_note": 0,
+      "id": "fuel_transactions",
+      "name": "Fuel Transactions",
+      "description": "Fuel Purchases by Customers",
+      "domain": "mediation",
+      "dataStore": "cdrStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "fuel data records"
+        },
+        {
+          "name": "fuel purchases"
+        },
+        {
+          "name": "customer transactions"
+        }
+      ],
+      "columns": [
+        {
+          "id": "customer_id",
+          "name": "Customer Id",
+          "type": "text"
+        },
+        {
+          "id": "customer_name",
+          "name": "Customer Name",
+          "type": "text"
+        },
+        {
+          "id": "customer_email",
+          "name": "Custimer Email",
+          "type": "text"
+        },
+        {
+          "id": "customer_contact",
+          "name": "Customer Contact Number",
+          "type": "text"
+        },
+        {
+          "id": "transaction_time",
+          "name": "Transaction Time",
+          "type": "epochInMillis"
+        },
+        {
+          "id": "station_id",
+          "name": "Station Id",
+          "type": "text"
+        },
+        {
+          "id": "station_name",
+          "name": "Station Name",
+          "type": "text"
+        },
+        {
+          "id": "station_location_lat",
+          "name": "Station Latitude",
+          "type": "numeric"
+        },
+        {
+          "id": "station_location_long",
+          "name": "Station Longitude",
+          "type": "numeric"
+        },
+        {
+          "id": "fuel_quantity",
+          "name": "Fuel Quantity",
+          "type": "numeric"
+        },
+        {
+          "id": "fuel_type",
+          "name": "Fuel Type",
+          "type": "text"
+        },
+        {
+          "id": "price",
+          "name": "Price",
+          "type": "numeric"
+        },
+        {
+          "id": "payment_method",
+          "name": "Payment Method",
+          "type": "text"
+        }
+      ],
+      "dgacMapping": [
+        {
+          "columnId": "customer_name",
+          "DGaCMapping": "name"
+        },
+        {
+          "columnId": "customer_contact",
+          "DGaCMapping": "phoneNumber"
+        },
+        {
+          "columnId": "customer_email",
+          "DGaCMapping": "eMail"
+        },
+        {
+          "columnId": "station_location_lat",
+          "DGaCMapping": "location"
+        },
+        {
+          "columnId": "station_location_long",
+          "DGaCMapping": "location"
+        }
+      ],
+      "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
     }
   ],
   "users": [
@@ -434,14 +544,20 @@
       "description": "Produces CDRs and EDR Data Products",
       "dataStores": [
         {
-          "dataStores": {
-            "id": "cdrStore",
-            "name": "CDR Store",
-            "type": "postgreSQL",
-            "connection-url": "jdbc:postgresql://tcbdbinstance-1.cfe1xtvgnpuf.ap-southeast-1.rds.amazonaws.com:5432/tcbdb",
-            "connection-user": "tcbdbuser",
-            "connection-password": "tcbdbpassword"
-          }
+          "id": "cdrStore",
+          "name": "CDR Store",
+          "type": "postgreSQL",
+          "connection-url": "jdbc:postgresql://tcbdbinstance-1.cfe1xtvgnpuf.ap-southeast-1.rds.amazonaws.com:5432/tcbdb",
+          "connection-user": "tcbdbuser",
+          "connection-password": "tcbdbpassword"
+        },
+        {
+          "type": "s3",
+          "id": "s3Bucket",
+          "name": "S3 Bucket",
+          "connection-url": "URL",
+          "connection-user": "myname",
+          "connection-password": "mypasswrd"
         }
       ]
     }
@@ -468,8 +584,9 @@
       "description": "Promotes Products and Services"
     },
     {
-      "sql": "select name, msisdn, mailId, startTime, cellId, calledPartyNumber from cdr limit 10",
-      "role": "superUser"
+      "id": "SQPartner",
+      "name": "SQ Partner",
+      "description": "Singapore Airlines Partner"
     }
   ],
   "dgac": [

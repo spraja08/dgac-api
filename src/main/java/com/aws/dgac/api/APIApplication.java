@@ -54,6 +54,7 @@ public class APIApplication extends Application {
         // Defines a route for the resource "list of items"
         router.attach( "/businessDomains", BusinessDomains.class );
         router.attach( "/businessDomains/{id}", BusinessDomains.class );
+        router.attach( "/dataStores/{id}", DataStores.class );
         router.attach( "/users", Users.class );
         router.attach( "/users/{id}", Users.class );
         router.attach( "/roles", Roles.class );
@@ -65,6 +66,7 @@ public class APIApplication extends Application {
         router.attach( "/dataProducts", DataProducts.class );
         router.attach( "/dataProducts/{id}", DataProducts.class );
         router.attach( "/query", Query.class );
+        router.attach( "/dataSourceTypes", DataSourceTypes.class );
         return router;
     }
 }

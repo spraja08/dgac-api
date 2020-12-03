@@ -14,8 +14,7 @@ import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ResourceException;
 
-public class BusinessDomains extends AbstractResource {
-
+public class DataStores extends AbstractResource {
     @Override
     protected void doInit() throws ResourceException {
         resource = "businessDomains";
@@ -24,21 +23,30 @@ public class BusinessDomains extends AbstractResource {
 
     @Override
     protected JsonRepresentation post(Representation ent) throws ResourceException {
-        return super.post(ent);
+        return null;
     }
 
     @Override
     protected JsonRepresentation get() throws ResourceException {
-        return super.get();
+        JsonRepresentation result = super.get();
+        String text;
+        try {
+            text = result.getText();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new ResourceException(0, e.toString());
+        }
+        JsonObject jObj = JsonParser.parseString(text).getAsJsonObject();
+        return new JsonRepresentation(jObj.get( "dataStores" ).getAsJsonArray().toString());
     }
 
     @Override
     protected Representation delete() throws ResourceException {
-        return super.delete();
+        return null;
     }
 
     @Override
     protected Representation put(Representation entity) throws ResourceException {
-        return super.put( entity );
+        return null;
     }
 }
