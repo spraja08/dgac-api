@@ -220,6 +220,10 @@
         {
           "columnId": "station_location_long",
           "DGaCMapping": "location"
+        },
+        {
+          "columnId": "customer_id",
+          "DGaCMapping": "name"
         }
       ],
       "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
@@ -268,51 +272,6 @@
     }
   ],
   "businessGlossary": [
-    {
-      "average_note": 0,
-      "id": "name",
-      "name": "Name",
-      "description": "Refers to the name of customers - modified",
-      "PII": true,
-      "governed": true,
-      "domains": [
-        "marketing"
-      ],
-      "synonyms": [
-        {
-          "name": "first name"
-        },
-        {
-          "name": "last name"
-        },
-        {
-          "name": "middle name"
-        }
-      ],
-      "DGac": {
-        "columnMasking": [
-          {
-            "roles": [
-              "superUser",
-              "customerCare"
-            ],
-            "dgac": [
-              "clear"
-            ]
-          },
-          {
-            "roles": [
-              "dataScientist"
-            ],
-            "dgac": [
-              "hash"
-            ]
-          }
-        ],
-        "rowFiltering": {},
-        "quality": []
-      }
-    },
     {
       "average_note": 0,
       "id": "eMail",
@@ -511,6 +470,52 @@
       },
       "rowFiltering": {},
       "quality": []
+    },
+    {
+      "average_note": 0,
+      "id": "name",
+      "name": "Name",
+      "description": "Refers to the name of customers - modified",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "first name"
+        },
+        {
+          "name": "last name"
+        },
+        {
+          "name": "middle name"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare",
+              "SQPartner"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ],
+        "rowFiltering": {},
+        "quality": []
+      }
     }
   ],
   "businessDomains": [

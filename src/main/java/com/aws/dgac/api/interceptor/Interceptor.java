@@ -102,6 +102,7 @@ public final class Interceptor {
     }
 
     private Connection getPrestoConnection() throws SQLException, ClassNotFoundException {
+        System.out.println( "*****************************Attempting Connecting to Presto*************************" );
         final String JDBC_DRIVER = "com.facebook.presto.jdbc.PrestoDriver";
         final String DB_URL = "jdbc:presto://ec2-54-254-182-252.ap-southeast-1.compute.amazonaws.com:8080/postgresql/tcbschema";
         // Database credentials
@@ -112,6 +113,7 @@ public final class Interceptor {
         Class.forName(JDBC_DRIVER);
         // Open a connection
         conn = DriverManager.getConnection(DB_URL, properties);
+        System.out.println( "*****************************Got Presto Connection*************************" );
         return conn;
     }
 
