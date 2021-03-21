@@ -23,6 +23,9 @@ public class AbstractResource extends ServerResource {
 
     protected String id;
     protected static String resource = "businessDomains";
+    protected int rangeStart;
+    protected int rangeEnd;
+    protected String searchQuery;
 
     @Override
     protected void doInit() throws ResourceException {
@@ -39,31 +42,107 @@ public class AbstractResource extends ServerResource {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        App.store.create( resource, input );
+        try {
+            App.store.create(resource, input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
         return new JsonRepresentation( input.toString() );
     }
 
     @Override
     protected JsonRepresentation get() throws ResourceException {
         if (this.id == null) {
-            JsonArray result = App.store.get( resource );
+            JsonArray result = null;
+            try {
+                result = App.store.get(resource);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
             Range range = new Range();
-            range.setUnitName( resource );
+            range.setUnitName(resource);
             range.setIndex(0);
             range.setSize(20);
             range.setInstanceSize(100);
             JsonRepresentation output = new JsonRepresentation(result.toString());
             output.setRange(range);
-            System.out.println( output.toString() );
+            System.out.println(output.toString());
             return output;
-        } else
-            return new JsonRepresentation(App.store.get( resource, this.id).toString());
+        }
+        try {
+            return new JsonRepresentation(App.store.get(resource, this.id).toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected JsonRepresentation get(String attribute, String value) throws ResourceException {
+        if (this.id == null) {
+            JsonArray result = null;
+            try {
+                result = App.store.filteredGet(resource, attribute, value);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+            Range range = new Range();
+            range.setUnitName(resource);
+            range.setIndex(0);
+            range.setSize(20);
+            range.setInstanceSize(100);
+            JsonRepresentation output = new JsonRepresentation(result.toString());
+            output.setRange(range);
+            System.out.println(output.toString());
+            return output;
+        }
+        try {
+            return new JsonRepresentation(App.store.get(resource, this.id).toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    protected JsonRepresentation search() throws ResourceException {
+        if (this.id == null) {
+            JsonArray result = null;
+            try {
+                result = App.store.search(resource, this.searchQuery, this.rangeStart, this.rangeEnd);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+            Range range = new Range();
+            range.setUnitName(resource);
+            range.setIndex(0);
+            range.setSize(20);
+            range.setInstanceSize(100);
+            JsonRepresentation output = new JsonRepresentation(result.toString());
+            output.setRange(range);
+            System.out.println(output.toString());
+            return output;
+        }
+        try {
+            return new JsonRepresentation(App.store.get(resource, this.id).toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     protected Representation delete() throws ResourceException {
-        JsonObject obj = App.store.get( resource, this.id);
-        App.store.delete( resource, obj );
+        JsonObject obj = null;
+        try {
+            obj = App.store.get(resource, this.id);
+            App.store.delete( resource, obj );
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return new JsonRepresentation( obj.toString() );
     }
 
@@ -75,7 +154,12 @@ public class AbstractResource extends ServerResource {
         } catch (JsonSyntaxException | IOException e) {
             e.printStackTrace();
         }
-        App.store.update( resource, input );
+        try {
+            App.store.update(resource, input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
         return new JsonRepresentation( input.toString() );
     }
 }

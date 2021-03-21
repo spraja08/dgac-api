@@ -16,14 +16,18 @@ public class TechnicalMetaData {
     private JsonArray technicalMetaData = null;
 
     public TechnicalMetaData() {
-        technicalMetaData = com.aws.dgac.api.App.store.get( "dataProducts" );
+        try {
+            technicalMetaData = com.aws.dgac.api.App.store.get("dataProducts");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public JsonArray getTechnicalMetaData() {
         return this.technicalMetaData;
     }
 
-    public JsonObject getTechnicalMetaData(String tableName) {
+    public JsonObject getTechnicalMetaData(String tableName) throws IOException {
         return com.aws.dgac.api.App.store.get( "dataProducts", tableName );
     }
 
@@ -46,7 +50,7 @@ public class TechnicalMetaData {
         return null;
     }
 
-    public String getBusinessCatalogMapping(String columnName, String tableName) {
+    public String getBusinessCatalogMapping(String columnName, String tableName) throws IOException {
         JsonObject table = getTechnicalMetaData( tableName );
         JsonElement mapping = getDgacColumnDef( table, columnName );
         if (mapping == null)

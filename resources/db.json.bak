@@ -1,0 +1,653 @@
+{
+  "dataProducts": [
+    {
+      "id": "cdr",
+      "name": "CDR",
+      "description": "Call Data Records",
+      "domain": "mediation",
+      "dataStore": "cdrStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "call data records"
+        },
+        {
+          "name": "cdrs"
+        },
+        {
+          "name": "xdrs"
+        }
+      ],
+      "columns": [
+        {
+          "id": "sequenceNumber",
+          "name": "sequenceNumber",
+          "type": "numeric"
+        },
+        {
+          "id": "name",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "id": "recordType",
+          "name": "recordType",
+          "type": "string"
+        },
+        {
+          "id": "msisdn",
+          "name": "msisdn",
+          "type": "string"
+        },
+        {
+          "id": "mailId",
+          "name": "mailId",
+          "type": "string"
+        },
+        {
+          "id": "calledPartyNumber",
+          "name": "calledPartyNumber",
+          "type": "string"
+        },
+        {
+          "id": "startTime",
+          "name": "startTime",
+          "type": "epochInMillis"
+        },
+        {
+          "id": "endTime",
+          "name": "endTime",
+          "type": "epochInMillis"
+        },
+        {
+          "id": "cellId",
+          "name": "cellId",
+          "type": "string"
+        },
+        {
+          "id": "charge",
+          "name": "charge",
+          "type": "numeric"
+        },
+        {
+          "id": "idd",
+          "name": "idd",
+          "type": "boolean"
+        },
+        {
+          "id": "destinationCountryCode",
+          "name": "destinationCountryCode",
+          "type": "string"
+        },
+        {
+          "id": "balanceBefore",
+          "name": "balanceBefore",
+          "type": "numeric"
+        },
+        {
+          "id": "balanceAfter",
+          "name": "balanceAfter",
+          "type": "numeric"
+        }
+      ],
+      "dgacMapping": [
+        {
+          "columnId": "name",
+          "DGaCMapping": "name"
+        },
+        {
+          "columnId": "msisdn",
+          "DGaCMapping": "phoneNumber"
+        },
+        {
+          "columnId": "mailId",
+          "DGaCMapping": "eMail"
+        },
+        {
+          "columnId": "calledPartyNumber",
+          "DGaCMapping": "phoneNumber"
+        },
+        {
+          "columnId": "cellId",
+          "DGaCMapping": "location"
+        }
+      ],
+      "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
+    },
+    {
+      "average_note": 0,
+      "id": "fuel_transactions",
+      "name": "Fuel Transactions",
+      "description": "Fuel Purchases by Customers",
+      "domain": "mediation",
+      "dataStore": "cdrStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "fuel data records"
+        },
+        {
+          "name": "fuel purchases"
+        },
+        {
+          "name": "customer transactions"
+        }
+      ],
+      "columns": [
+        {
+          "id": "customer_id",
+          "name": "Customer Id",
+          "type": "text"
+        },
+        {
+          "id": "customer_name",
+          "name": "Customer Name",
+          "type": "text"
+        },
+        {
+          "id": "customer_email",
+          "name": "Custimer Email",
+          "type": "text"
+        },
+        {
+          "id": "customer_contact",
+          "name": "Customer Contact Number",
+          "type": "text"
+        },
+        {
+          "id": "transaction_time",
+          "name": "Transaction Time",
+          "type": "epochInMillis"
+        },
+        {
+          "id": "station_id",
+          "name": "Station Id",
+          "type": "text"
+        },
+        {
+          "id": "station_name",
+          "name": "Station Name",
+          "type": "text"
+        },
+        {
+          "id": "station_location_lat",
+          "name": "Station Latitude",
+          "type": "numeric"
+        },
+        {
+          "id": "station_location_long",
+          "name": "Station Longitude",
+          "type": "numeric"
+        },
+        {
+          "id": "fuel_quantity",
+          "name": "Fuel Quantity",
+          "type": "numeric"
+        },
+        {
+          "id": "fuel_type",
+          "name": "Fuel Type",
+          "type": "text"
+        },
+        {
+          "id": "price",
+          "name": "Price",
+          "type": "numeric"
+        },
+        {
+          "id": "payment_method",
+          "name": "Payment Method",
+          "type": "text"
+        }
+      ],
+      "dgacMapping": [
+        {
+          "columnId": "customer_name",
+          "DGaCMapping": "name"
+        },
+        {
+          "columnId": "customer_contact",
+          "DGaCMapping": "phoneNumber"
+        },
+        {
+          "columnId": "customer_email",
+          "DGaCMapping": "eMail"
+        },
+        {
+          "columnId": "station_location_lat",
+          "DGaCMapping": "location"
+        },
+        {
+          "columnId": "station_location_long",
+          "DGaCMapping": "location"
+        },
+        {
+          "columnId": "customer_id",
+          "DGaCMapping": "name"
+        }
+      ],
+      "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
+    }
+  ],
+  "users": [
+    {
+      "id": "raja",
+      "name": "Raja SP",
+      "username": "raja",
+      "email": "Sincere@april.biz",
+      "phone": "1-770-736-8031 x56442",
+      "domains": [
+        "dataPlatform"
+      ],
+      "roles": [
+        "superUser"
+      ]
+    },
+    {
+      "id": "george",
+      "name": "George Irwin",
+      "username": "george",
+      "email": "geroge@email.com",
+      "phone": "65-93811504",
+      "domains": [
+        "dataPlatform",
+        "2"
+      ],
+      "roles": [
+        "superUser"
+      ]
+    },
+    {
+      "id": "vikas",
+      "name": "Vikas Omer",
+      "username": "vikas",
+      "email": "vikas@email.com",
+      "phone": "65 3443490923",
+      "domains": [
+        "dataPlatform"
+      ],
+      "roles": [
+        "superUser"
+      ]
+    }
+  ],
+  "businessGlossary": [
+    {
+      "average_note": 0,
+      "id": "eMail",
+      "name": "Email",
+      "description": "email ids",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "mail"
+        },
+        {
+          "name": "contact email"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "redact"
+            ]
+          }
+        ],
+        "rowFiltering": {},
+        "quality": []
+      }
+    },
+    {
+      "average_note": 0,
+      "id": "phoneNumber",
+      "name": "Phone Number",
+      "description": "Phone Numbers",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "crm",
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "telehone"
+        },
+        {
+          "name": "contact number"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "customerCare",
+              "superUser"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
+      },
+      "rowFiltering": {},
+      "quality": []
+    },
+    {
+      "average_note": 0,
+      "id": "addressUnitNumber",
+      "description": "Houser or Unit Number",
+      "name": "Address - Unit Number",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "crm"
+      ],
+      "synonyms": [
+        {
+          "name": "Home Unit"
+        },
+        {
+          "name": "Unit Number"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
+      },
+      "rowFiltering": {},
+      "quality": []
+    },
+    {
+      "average_note": 0,
+      "id": "addressStreet",
+      "name": "Address - Street",
+      "description": "Address - Street",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "crm"
+      ],
+      "synonyms": [
+        {
+          "name": "Street name"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ]
+      },
+      "rowFiltering": {},
+      "quality": []
+    },
+    {
+      "average_note": 0,
+      "id": "location",
+      "name": "Location",
+      "description": "Location",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "crm"
+      ],
+      "synonyms": [
+        {
+          "name": "GeoLocation"
+        },
+        {
+          "name": "Lat Long"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "dataScientist"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          }
+        ]
+      },
+      "rowFiltering": {},
+      "quality": []
+    },
+    {
+      "average_note": 0,
+      "id": "name",
+      "name": "Name",
+      "description": "Refers to the name of customers - modified",
+      "PII": true,
+      "governed": true,
+      "domains": [
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "first name"
+        },
+        {
+          "name": "last name"
+        },
+        {
+          "name": "middle name"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "superUser",
+              "customerCare",
+              "SQPartner"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "hash"
+            ]
+          }
+        ],
+        "rowFiltering": {},
+        "quality": []
+      }
+    }
+  ],
+  "businessDomains": [
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "description": "Promotes business and drives sales of products and services.",
+      "dataStores": []
+    },
+    {
+      "name": "Data Science",
+      "description": "Provides information and decision support. Discovers insights and share knowledge",
+      "id": "dataScience",
+      "dataStores": []
+    },
+    {
+      "id": "dataPlatform",
+      "name": "Data Platform",
+      "description": "Owns the Data Platform",
+      "dataStores": []
+    },
+    {
+      "id": "crm",
+      "name": "CRM",
+      "description": "Customer Relationships Management",
+      "dataStores": []
+    },
+    {
+      "id": "mediation",
+      "name": "Mediation",
+      "description": "Produces CDRs and EDR Data Products",
+      "dataStores": [
+        {
+          "id": "cdrStore",
+          "name": "CDR Store",
+          "type": "postgreSQL",
+          "connection-url": "jdbc:postgresql://tcbdbinstance-1.cfe1xtvgnpuf.ap-southeast-1.rds.amazonaws.com:5432/tcbdb",
+          "connection-user": "tcbdbuser",
+          "connection-password": "tcbdbpassword"
+        },
+        {
+          "type": "s3",
+          "id": "s3Bucket",
+          "name": "S3 Bucket",
+          "connection-url": "URL",
+          "connection-user": "myname",
+          "connection-password": "mypasswrd"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "dataScientist",
+      "name": "Data Scientist",
+      "description": "Manages models for decision support."
+    },
+    {
+      "id": "customerCare",
+      "name": "Customer Care",
+      "description": "Manages Customer Experience"
+    },
+    {
+      "id": "superUser",
+      "name": "Super User",
+      "description": "Has admin control. Unlimited Access"
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "description": "Promotes Products and Services"
+    },
+    {
+      "id": "SQPartner",
+      "name": "SQ Partner",
+      "description": "Singapore Airlines Partner"
+    }
+  ],
+  "dgac": [
+    {
+      "id": "clear",
+      "name": "View in Clear",
+      "operation": "View",
+      "description": "View the full value in clear",
+      "category": "Privacy",
+      "udf": "aws_dgac_clear"
+    },
+    {
+      "id": "hash",
+      "name": "View as Hashed",
+      "operation": "View",
+      "description": "View the hased value",
+      "category": "Privacy",
+      "udf": "aws_dgac_hash"
+    },
+    {
+      "id": "block",
+      "name": "Block the Value",
+      "operation": "View",
+      "description": "Replace the actual values to blocked",
+      "category": "Privacy",
+      "udf": "aws_dgac_block"
+    },
+    {
+      "id": "redact",
+      "name": "View as Redacted",
+      "operation": "View",
+      "description": "View the redacted value",
+      "category": "Privacy",
+      "udf": "aws_dgac_redact"
+    },
+    {
+      "id": "notNull",
+      "name": "Not Null",
+      "description": "Value Can\u0027t be Null",
+      "operation": "Create",
+      "category": "Quality",
+      "udf": "aws_dgac_notNull"
+    }
+  ],
+  "dataSourceTypes": [
+    {
+      "id": "postgreSQL",
+      "name": "PostgreSQL"
+    },
+    {
+      "id": "redshift",
+      "name": "RedShift"
+    },
+    {
+      "id": "s3",
+      "name": "S3"
+    }
+  ]
+}

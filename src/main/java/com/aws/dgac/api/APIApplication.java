@@ -61,12 +61,15 @@ public class APIApplication extends Application {
         router.attach( "/roles/{id}", Roles.class );
         router.attach( "/dgac", DGaC.class );
         router.attach( "/dgac/{id}", DGaC.class );
-        router.attach( "/businessGlossary", BusinessGlossary.class );
-        router.attach( "/businessGlossary/{id}", BusinessGlossary.class );
+        router.attach( "/ontologyAttributes", OntologyAttributes.class );
+        router.attach( "/ontologyAttributes/{id}", OntologyAttributes.class );
         router.attach( "/dataProducts", DataProducts.class );
         router.attach( "/dataProducts/{id}", DataProducts.class );
         router.attach( "/query", Query.class );
         router.attach( "/dataSourceTypes", DataSourceTypes.class );
+        router.attach( "/ontologyElementTypes", OntologyElementTypes.class );
+        router.attach( "/ontologyEntities", OntologyEntities.class );
+        router.attach( "/ontologyEntities/{id}", OntologyEntities.class );
         return router;
     }
 }

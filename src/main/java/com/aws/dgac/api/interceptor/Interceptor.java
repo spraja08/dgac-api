@@ -13,9 +13,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
+import com.aws.dgac.api.App;
 import com.google.gson.GsonBuilder;
 import com.opencsv.CSVWriter;
 import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.parser.CCJSqlParserManager;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
@@ -103,15 +105,12 @@ public final class Interceptor {
 
     private Connection getPrestoConnection() throws SQLException, ClassNotFoundException {
         System.out.println( "*****************************Attempting Connecting to Presto*************************" );
-        final String JDBC_DRIVER = "com.facebook.presto.jdbc.PrestoDriver";
-        final String DB_URL = "jdbc:presto://ec2-54-254-182-252.ap-southeast-1.compute.amazonaws.com:8080/postgresql/tcbschema";
-        // Database credentials
+        final String JDBC_DRIVER = App.properties.getProperty( "aws.dgac.query_engine_driver" );
+        final String DB_URL = App.properties.getProperty( "aws.dgac.query_engine_url" );
         Properties properties = new Properties();
-        properties.setProperty("user", "test");
+        properties.setProperty("user", App.properties.getProperty( "aws.dgac.query_engine_user") );
         Connection conn = null;
-        // Register JDBC driver
         Class.forName(JDBC_DRIVER);
-        // Open a connection
         conn = DriverManager.getConnection(DB_URL, properties);
         System.out.println( "*****************************Got Presto Connection*************************" );
         return conn;
@@ -143,8 +142,9 @@ public final class Interceptor {
         Select select = (Select) CCJSqlParserUtil.parse(sql);
         List<String> tables = new TablesNamesFinder().getTableList(select);
 
-        StringBuilder buffer = new StringBuilder();
-        ExpressionDeParser expressionDeParser = new ExpressionDeParser() {
+        List< String > whereClauses = new ArrayList< String >();
+
+        ExpressionDeParser columnParser = new ExpressionDeParser() {
             @Override
             public void visit(Column tableColumn) {
                 String tableName = null;
@@ -154,23 +154,75 @@ public final class Interceptor {
                 else
                     tableName = technicalMetaData.getTableGivenColumn(columnName, tables);
 
-                String bcMapping = technicalMetaData.getBusinessCatalogMapping(columnName, tableName);
-                if (bcMapping != null) {
-                    String gacColumn = businessCatalog.getDGaCColumn(columnName, bcMapping, roleId);
-                    if (gacColumn != null) {
-                        tableColumn.setColumnName(gacColumn + " as " + columnName);
+                String bcMapping = null;
+                try{
+                    bcMapping = technicalMetaData.getBusinessCatalogMapping(columnName, tableName);
+                    if (bcMapping != null) {
+                        String gacColumn = businessCatalog.getDGaCColumn(columnName, bcMapping, roleId);
+                        if (gacColumn != null) {
+                            tableColumn.setColumnName(gacColumn + " as " + columnName);
+                        }
                     }
+                } catch( IOException e ) {
+                    e.printStackTrace();
                 }
                 super.visit(tableColumn);
             }
         };
 
-        SelectDeParser deparser = new SelectDeParser(expressionDeParser, buffer) {
+        ExpressionDeParser rowFilterParserParser = new ExpressionDeParser() {
+            @Override
+            public void visit(Column tableColumn) {
+                String tableName = null;
+                String columnName = tableColumn.getColumnName();
+                if (tableColumn.getTable() != null)
+                    tableName = tableColumn.getTable().getName();
+                else
+                    tableName = technicalMetaData.getTableGivenColumn(columnName, tables);
+
+                String bcMapping = null;
+                try{
+                    bcMapping = technicalMetaData.getBusinessCatalogMapping(columnName, tableName);
+                    if (bcMapping != null) {
+                        String gacRowFilter = businessCatalog.getDGaCRowFilter(columnName, bcMapping, roleId);
+                        if (gacRowFilter != null) {
+                            whereClauses.add( gacRowFilter );
+                        }
+                    }
+                } catch( IOException e ) {
+                    e.printStackTrace();
+                }
+                super.visit(tableColumn);
+            }
         };
-        expressionDeParser.setSelectVisitor(deparser);
-        expressionDeParser.setBuffer(buffer);
+
+        //This part is to just fill the  list of where clauses
+        StringBuilder buffer = new StringBuilder();
+        SelectDeParser deparser = new SelectDeParser(rowFilterParserParser, buffer) {};
+        rowFilterParserParser.setSelectVisitor(deparser);
+        rowFilterParserParser.setBuffer(buffer);
         select.getSelectBody().accept(deparser);
-        return buffer.toString();
+
+        buffer = new StringBuilder();
+        deparser = new SelectDeParser(columnParser, buffer) {};
+        columnParser.setSelectVisitor(deparser);
+        columnParser.setBuffer(buffer);
+        select.getSelectBody().accept(deparser);
+
+        String where = null;
+        for( int i=0; i<whereClauses.size(); i++ ) {
+            if( i == 0 )
+                where = whereClauses.get( i );
+            else    
+                where += " and " + whereClauses.get( i );    
+        }
+
+        if( where != null ) {
+            Expression whereExp = CCJSqlParserUtil.parseCondExpression( where );
+            ((PlainSelect) select.getSelectBody()).setWhere( whereExp );
+        }  
+      
+        return select.getSelectBody().toString();
     }
 
     private static void replaceTableName(String sql) throws JSQLParserException {

@@ -88,6 +88,11 @@
           "id": "balanceAfter",
           "name": "balanceAfter",
           "type": "numeric"
+        },
+        {
+          "id": "custType",
+          "name": "Customer Type",
+          "type": "string"
         }
       ],
       "dgacMapping": [
@@ -110,9 +115,13 @@
         {
           "columnId": "cellId",
           "DGaCMapping": "location"
+        },
+        {
+          "columnId": "custType",
+          "DGaCMapping": "customerType"
         }
       ],
-      "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
+      "documentation": "<h3>Uses</h3><p>Call detail records serve a variety of functions. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">telephone service providers</a>, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Law_enforcement\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">law enforcement</a>, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual's relationships with associates, communication and behavior patterns, and even&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">location data</a>&nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.</p>"
     },
     {
       "average_note": 0,
@@ -226,7 +235,131 @@
           "DGaCMapping": "name"
         }
       ],
-      "documentation": "\u003ch3\u003eUses\u003c/h3\u003e\u003cp\u003eCall detail records serve a variety of functions. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003etelephone service providers\u003c/a\u003e, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Law_enforcement\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elaw enforcement\u003c/a\u003e, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual\u0027s relationships with associates, communication and behavior patterns, and even\u0026nbsp;\u003ca href\u003d\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel\u003d\"noopener noreferrer\" target\u003d\"_blank\" style\u003d\"background-color: initial; color: rgb(11, 0, 128);\"\u003elocation data\u003c/a\u003e\u0026nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.\u003c/p\u003e"
+      "documentation": "<h3>Uses</h3><p>Call detail records serve a variety of functions. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">telephone service providers</a>, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Law_enforcement\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">law enforcement</a>, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual's relationships with associates, communication and behavior patterns, and even&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">location data</a>&nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.</p>"
+    },
+    {
+      "id": "vaccination_tweets",
+      "name": "Vaccinaton Tweets",
+      "description": "Recent Tweets about Vaccincation",
+      "domain": "mediation",
+      "dataStore": "cdrStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "vaccination tweet records"
+        },
+        {
+          "name": "covid"
+        },
+        {
+          "name": "corona"
+        }
+      ],
+      "columns": [
+        {
+          "id": "id",
+          "name": "id",
+          "type": "numeric"
+        },
+        {
+          "id": "user_name",
+          "name": "user_name",
+          "type": "string"
+        },
+        {
+          "id": "user_location",
+          "name": "user_location",
+          "type": "string"
+        },
+        {
+          "id": "user_description",
+          "name": "user_description",
+          "type": "string"
+        },
+        {
+          "id": "user_created",
+          "name": "user_created",
+          "type": "string"
+        },
+        {
+          "id": "user_friends",
+          "name": "user_friends",
+          "type": "int"
+        },
+        {
+          "id": "user_favourites",
+          "name": "user_favourites",
+          "type": "int"
+        },
+        {
+          "id": "time",
+          "name": "time",
+          "type": "epochInMillis"
+        },
+        {
+          "id": "tweet",
+          "name": "tweet",
+          "type": "String"
+        }
+      ],
+      "documentation": "<h3>Uses</h3><p>Call detail records serve a variety of functions. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">telephone service providers</a>, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Law_enforcement\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">law enforcement</a>, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual's relationships with associates, communication and behavior patterns, and even&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">location data</a>&nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.</p>"
+    },
+    {
+      "id": "bestseller_books",
+      "name": "Best Seller Books",
+      "description": "Amazon's Top 50 Best Selling Books",
+      "domain": "mediation",
+      "dataStore": "cdrStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "Top Books"
+        },
+        {
+          "name": "Best Sellers"
+        },
+        {
+          "name": "Books"
+        }
+      ],
+      "columns": [
+        {
+          "id": "name",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "id": "author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "id": "user_rating",
+          "name": "user_rating",
+          "type": "string"
+        },
+        {
+          "id": "reviews",
+          "name": "reviews",
+          "type": "int"
+        },
+        {
+          "id": "price",
+          "name": "price",
+          "type": "numeric"
+        },
+        {
+          "id": "year",
+          "name": "year",
+          "type": "int"
+        },
+        {
+          "id": "genre",
+          "name": "genre",
+          "type": "String"
+        }
+      ],
+      "documentation": "<h3>Uses</h3><p>Call detail records serve a variety of functions. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">telephone service providers</a>, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Law_enforcement\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">law enforcement</a>, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual's relationships with associates, communication and behavior patterns, and even&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">location data</a>&nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.</p>"
     }
   ],
   "users": [
@@ -271,7 +404,7 @@
       ]
     }
   ],
-  "businessGlossary": [
+  "ontologyAttributes": [
     {
       "average_note": 0,
       "id": "eMail",
@@ -279,6 +412,7 @@
       "description": "email ids",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "marketing"
       ],
@@ -309,8 +443,55 @@
             ]
           }
         ],
-        "rowFiltering": {},
         "quality": []
+      }
+    },
+    {
+      "average_note": 0,
+      "id": "customerType",
+      "name": "Customer Type",
+      "description": "Type of Customer",
+      "PII": true,
+      "governed": true,
+      "type": "attribute",
+      "domains": [
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "VIP Indicator"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [
+          {
+            "roles": [
+              "customerCare",
+              "superUser",
+              "marketing"
+            ],
+            "dgac": [
+              "clear"
+            ]
+          },
+          {
+            "roles": [
+              "dataScientist"
+            ],
+            "dgac": [
+              "block"
+            ]
+          }
+        ],
+        "quality": [],
+        "rowFiltering": [
+          {
+            "roles": [
+              "marketing"
+            ],
+            "filterValues": "'VIP'"
+          }
+        ]
       }
     },
     {
@@ -320,6 +501,7 @@
       "description": "Phone Numbers",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "crm",
         "marketing"
@@ -353,7 +535,6 @@
           }
         ]
       },
-      "rowFiltering": {},
       "quality": []
     },
     {
@@ -363,6 +544,7 @@
       "name": "Address - Unit Number",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "crm"
       ],
@@ -395,7 +577,6 @@
           }
         ]
       },
-      "rowFiltering": {},
       "quality": []
     },
     {
@@ -405,6 +586,7 @@
       "description": "Address - Street",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "crm"
       ],
@@ -434,7 +616,6 @@
           }
         ]
       },
-      "rowFiltering": {},
       "quality": []
     },
     {
@@ -444,6 +625,7 @@
       "description": "Location",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "crm"
       ],
@@ -468,16 +650,16 @@
           }
         ]
       },
-      "rowFiltering": {},
       "quality": []
     },
     {
       "average_note": 0,
       "id": "name",
       "name": "Name",
-      "description": "Refers to the name of customers - modified",
+      "description": "Refers to the name of customers",
       "PII": true,
       "governed": true,
+      "type": "attribute",
       "domains": [
         "marketing"
       ],
@@ -513,7 +695,29 @@
             ]
           }
         ],
-        "rowFiltering": {},
+        "quality": []
+      }
+    }
+  ],
+  "ontologyEntities": [
+    {
+      "average_note": 0,
+      "id": "customer",
+      "name": "Customer",
+      "description": "Customer",
+      "PII": true,
+      "governed": true,
+      "type": "entity",
+      "domains": [
+        "marketing"
+      ],
+      "synonyms": [
+        {
+          "name": "Buyer"
+        }
+      ],
+      "DGac": {
+        "columnMasking": [],
         "quality": []
       }
     }
@@ -630,7 +834,7 @@
     {
       "id": "notNull",
       "name": "Not Null",
-      "description": "Value Can\u0027t be Null",
+      "description": "Value Can't be Null",
       "operation": "Create",
       "category": "Quality",
       "udf": "aws_dgac_notNull"
@@ -648,6 +852,16 @@
     {
       "id": "s3",
       "name": "S3"
+    }
+  ],
+  "ontologyElementTypes": [
+    {
+      "id": "attribute",
+      "name": "Attribute"
+    },
+    {
+      "id": "entity",
+      "name": "Entity"
     }
   ]
 }

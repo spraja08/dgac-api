@@ -54,6 +54,12 @@ public class FileStore implements Store {
     }
 
     @Override
+    public JsonArray search(String resource, String query, int rangeStart, int rangeEnd ) {
+        // getList
+        return get( resource );
+    }
+
+    @Override
     public JsonObject get(String resource, String id) {
         // getOne
         JsonArray records = memMap.get("data").get(resource).getAsJsonArray();
@@ -86,5 +92,11 @@ public class FileStore implements Store {
         delete(resource, content);
         create(resource, content);
         persistStore();
+    }
+
+    @Override
+    public JsonArray filteredGet(String resource, String attribute, String value) throws IOException {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

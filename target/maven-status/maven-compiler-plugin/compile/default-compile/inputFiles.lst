@@ -1,3 +1,5 @@
+/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/OntologyEntities.java
+/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/OntologyAttributes.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/TechnicalMetaData.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/BusinessDomains.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/DataSourceTypes.java
@@ -7,6 +9,7 @@
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/Roles.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/DBTablePrinter.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/connector/DGacUtils.java
+/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/OntologyElementTypes.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/connector/FileStore.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/DGacUtils.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/DataStores.java
@@ -17,4 +20,4 @@
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/App.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/Interceptor.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/Users.java
-/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/BusinessGlossary.java
+/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/connector/ElasticStore.java
