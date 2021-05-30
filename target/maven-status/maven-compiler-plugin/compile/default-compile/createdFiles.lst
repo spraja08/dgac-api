@@ -1,5 +1,6 @@
 com/aws/dgac/api/server_resources/DGaC.class
 com/aws/dgac/api/server_resources/DataSourceTypes.class
+com/aws/dgac/api/interceptor/Interceptor$5.class
 com/aws/dgac/api/server_resources/Users.class
 com/aws/dgac/api/server_resources/OntologyEntities.class
 com/aws/dgac/api/connector/DGacUtils.class
@@ -7,6 +8,7 @@ com/aws/dgac/api/interceptor/Interceptor$1.class
 com/aws/dgac/api/Query.class
 com/aws/dgac/api/connector/FileStore.class
 com/aws/dgac/api/interceptor/DBTablePrinter$Column.class
+com/aws/dgac/api/interceptor/Interceptor$6.class
 com/aws/dgac/api/App.class
 com/aws/dgac/api/interceptor/Interceptor$3.class
 com/aws/dgac/api/interceptor/BusinessCatalog.class
@@ -18,6 +20,7 @@ com/aws/dgac/api/server_resources/OntologyElementTypes.class
 com/aws/dgac/api/connector/ElasticStore.class
 com/aws/dgac/api/connector/Store.class
 com/aws/dgac/api/server_resources/DataProducts.class
+com/aws/dgac/api/Contract.class
 com/aws/dgac/api/server_resources/BusinessDomains.class
 com/aws/dgac/api/interceptor/DBTablePrinter.class
 com/aws/dgac/api/interceptor/Interceptor$2.class

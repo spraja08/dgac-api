@@ -43,6 +43,38 @@ public class BusinessCatalog {
          return "aws_dgac_block" + "(" + columnName + ")";   
     }
 
+    public String getDGaCConstruct(String columnName, String bcItem, String roleId) throws IOException {
+        JsonObject bcObject = com.aws.dgac.api.App.store.get( "ontologyAttributes", bcItem );
+        JsonObject gacs = bcObject.get( "DGac" ).getAsJsonObject();
+        JsonArray maskingConstructs = gacs.get("columnMasking").getAsJsonArray();
+
+        JsonArray filteringConstructs = new JsonArray();
+        if( gacs.has( "rowFiltering") && ! gacs.get("rowFiltering").isJsonNull() )
+        filteringConstructs = gacs.get("rowFiltering").getAsJsonArray();
+
+        String maskingDgacId = null;
+        for( int i=0; i<maskingConstructs.size(); i++ ) {
+            if( maskingConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) )
+                maskingDgacId = maskingConstructs.get( i ).getAsJsonObject().get( "dgac" ).getAsJsonArray().get( 0 ).getAsString();
+        }
+        
+        String masking = null;
+        if( maskingDgacId != null ) {       
+            masking = com.aws.dgac.api.App.store.get( "dgac", maskingDgacId ).get( "name" ).getAsString();
+        } else 
+            masking = "Block the Value";   
+        
+        String filterValue = null;
+        for( int i=0; i<filteringConstructs.size(); i++ ) {
+            if( filteringConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) ) {
+                filterValue = filteringConstructs.get( i ).getAsJsonObject().get( "filterValues" ).getAsString();
+                break;
+            }   
+        }
+        return masking + ( ( filterValue != null ) ? ( " and FILTER ROWS BY : " + filterValue ) : "" );
+    }
+
+
     public String getDGaCRowFilter(String columnName, String bcItem, String roleId) throws IOException {
         JsonObject bcObject = com.aws.dgac.api.App.store.get( "ontologyAttributes", bcItem );
         JsonObject gacs = bcObject.get( "DGac" ).getAsJsonObject();

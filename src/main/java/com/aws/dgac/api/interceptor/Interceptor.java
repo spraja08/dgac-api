@@ -9,12 +9,15 @@ import java.io.StringWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
 import com.aws.dgac.api.App;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.opencsv.CSVWriter;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Expression;
@@ -45,8 +48,8 @@ public final class Interceptor {
     }
 
     public String getQueryResults(String sql, String roleId) throws JSQLParserException, IOException {
-        String gacQuery = applyDGaC(sql, roleId);
         System.out.println( "Incoming Query : " + sql );
+        String gacQuery = applyDGaC(sql, roleId);
         System.out.println( "DGaC Query : " + gacQuery );
         java.sql.Statement stmt = null;
         try {
@@ -57,6 +60,60 @@ public final class Interceptor {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getContract(String sql, String roleId) throws JSQLParserException, IOException {
+        System.out.println( "Incoming Query : " + sql );
+        StringWriter writer = new StringWriter(); // put your own writer here
+        CSVWriter csvWriter = new CSVWriter( writer );
+        String[] aLine = new String[3];
+        aLine[0] = "COLUMN";
+        aLine[1] = "ONTOLOGY MAPPING";
+        aLine[2] = "DGaC CONSTRUCT";
+        csvWriter.writeNext( aLine, false );
+
+        Select select = (Select) CCJSqlParserUtil.parse(sql);
+        List<String> tables = new TablesNamesFinder().getTableList(select);
+        List< String > columns = getColumnsFromSelectClause( sql, tables );
+        
+        for( int i=0; i<tables.size(); i++ ) {
+            String thisTable = tables.get(i);
+            if( thisTable.contains( "." ) ) { //Fully qualified Table Name
+                String[] fqn = thisTable.split( "\\." );
+                thisTable = fqn[ fqn.length - 1 ];
+            }    
+            JsonObject tableMeta = technicalMetaData.getTechnicalMetaData(thisTable);
+            JsonArray colArr = tableMeta.get( "columns" ).getAsJsonArray();
+            for( int j=0; j<colArr.size(); j++ ) {
+                String thisCol = colArr.get( j ).getAsJsonObject().get( "id" ).getAsString();
+                if( columns.contains( thisCol ) ) {
+                    String bcMapping = technicalMetaData.getBusinessCatalogMapping(thisCol, thisTable);
+                    aLine = new String[ 3 ];
+                    aLine[ 0 ] = thisTable + "." + thisCol;
+                    if( bcMapping != null ) {
+                        String gacConstruct = businessCatalog.getDGaCConstruct(thisCol, bcMapping, roleId);
+                        aLine[ 1 ] = bcMapping;
+                        aLine[ 2 ] = gacConstruct;
+                    } else {
+                        aLine[ 1 ] = "Not Governed";
+                        aLine[ 2 ] = "View in Clear";
+                    }
+                    csvWriter.writeNext( aLine, false );
+                }
+            }
+        }
+        csvWriter.flush();
+        return writer.toString();
+    }
+
+    private List<String> getColumnsFromSelectClause( String sql, List<String> tables ) {
+        String lowerSql = sql.toLowerCase();
+        String selectColumnns = lowerSql.substring( lowerSql.indexOf( "select" ) + 6, lowerSql.indexOf( "from" ) );
+        String[] arrCols = selectColumnns.split( "," );
+        List< String > cols = new ArrayList< String >();
+        for( int i=0; i<arrCols.length; i++ )
+            cols.add( arrCols[i].trim() );
+        return cols;        
     }
 
     private String getCSV( ResultSet res) throws SQLException, IOException {
@@ -138,10 +195,9 @@ public final class Interceptor {
         }
     }
 
-    private String applyDGaC(String sql, String roleId) throws JSQLParserException {
+    public String applyDGaC(String sql, String roleId) throws JSQLParserException {
         Select select = (Select) CCJSqlParserUtil.parse(sql);
         List<String> tables = new TablesNamesFinder().getTableList(select);
-
         List< String > whereClauses = new ArrayList< String >();
 
         ExpressionDeParser columnParser = new ExpressionDeParser() {
@@ -149,8 +205,9 @@ public final class Interceptor {
             public void visit(Column tableColumn) {
                 String tableName = null;
                 String columnName = tableColumn.getColumnName();
+                String fullColumnName = tableColumn.getFullyQualifiedName();
                 if (tableColumn.getTable() != null)
-                    tableName = tableColumn.getTable().getName();
+                    tableName = tableColumn.getTable().getFullyQualifiedName();
                 else
                     tableName = technicalMetaData.getTableGivenColumn(columnName, tables);
 
@@ -158,7 +215,7 @@ public final class Interceptor {
                 try{
                     bcMapping = technicalMetaData.getBusinessCatalogMapping(columnName, tableName);
                     if (bcMapping != null) {
-                        String gacColumn = businessCatalog.getDGaCColumn(columnName, bcMapping, roleId);
+                        String gacColumn = businessCatalog.getDGaCColumn(fullColumnName, bcMapping, roleId);
                         if (gacColumn != null) {
                             tableColumn.setColumnName(gacColumn + " as " + columnName);
                         }
@@ -176,7 +233,7 @@ public final class Interceptor {
                 String tableName = null;
                 String columnName = tableColumn.getColumnName();
                 if (tableColumn.getTable() != null)
-                    tableName = tableColumn.getTable().getName();
+                    tableName = tableColumn.getTable().getFullyQualifiedName();
                 else
                     tableName = technicalMetaData.getTableGivenColumn(columnName, tables);
 

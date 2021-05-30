@@ -66,6 +66,7 @@ public class APIApplication extends Application {
         router.attach( "/dataProducts", DataProducts.class );
         router.attach( "/dataProducts/{id}", DataProducts.class );
         router.attach( "/query", Query.class );
+        router.attach( "/contract", Contract.class );
         router.attach( "/dataSourceTypes", DataSourceTypes.class );
         router.attach( "/ontologyElementTypes", OntologyElementTypes.class );
         router.attach( "/ontologyEntities", OntologyEntities.class );

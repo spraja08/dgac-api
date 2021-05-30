@@ -5,6 +5,7 @@
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/DataSourceTypes.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/BusinessCatalog.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/AbstractResource.java
+/Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/Contract.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/Query.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/server_resources/Roles.java
 /Users/rspamzn/Documents/DAML/Assets/DGaC/app/dgac-api/src/main/java/com/aws/dgac/api/interceptor/DBTablePrinter.java

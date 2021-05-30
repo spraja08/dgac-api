@@ -44,8 +44,13 @@ public class TechnicalMetaData {
         for( int i=0; i<technicalMetaData.size(); i++ ) {
             JsonObject thisTable = technicalMetaData.get(i).getAsJsonObject();
             String thisTableId = thisTable.get( "id" ).getAsString();
-            if( tables.contains( thisTableId) && getColumnDef( thisTable, columnName ) != null )
-                return thisTableId;
+            for( int j=0; j<tables.size(); j++ ) {
+                String fqtable = tables.get(j);
+                //either the table name is matching or it is part of the fully qualfied name
+                if( ( fqtable.contains( thisTableId) || fqtable.contains( "." + thisTableId ) ) 
+                    && getColumnDef( thisTable, columnName ) != null )
+                    return thisTableId;
+            }    
         }
         return null;
     }

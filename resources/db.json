@@ -20,14 +20,9 @@
       ],
       "columns": [
         {
-          "id": "sequenceNumber",
-          "name": "sequenceNumber",
+          "id": "customerid",
+          "name": "customerid",
           "type": "numeric"
-        },
-        {
-          "id": "name",
-          "name": "name",
-          "type": "string"
         },
         {
           "id": "recordType",
@@ -35,18 +30,13 @@
           "type": "string"
         },
         {
-          "id": "msisdn",
-          "name": "msisdn",
+          "id": "caller_number",
+          "name": "caller_number",
           "type": "string"
         },
         {
-          "id": "mailId",
-          "name": "mailId",
-          "type": "string"
-        },
-        {
-          "id": "calledPartyNumber",
-          "name": "calledPartyNumber",
+          "id": "called_party_number",
+          "name": "called_party_number",
           "type": "string"
         },
         {
@@ -80,13 +70,13 @@
           "type": "string"
         },
         {
-          "id": "balanceBefore",
-          "name": "balanceBefore",
+          "id": "balance_before",
+          "name": "balance_before",
           "type": "numeric"
         },
         {
-          "id": "balanceAfter",
-          "name": "balanceAfter",
+          "id": "balance_after",
+          "name": "balance_after",
           "type": "numeric"
         },
         {
@@ -97,19 +87,11 @@
       ],
       "dgacMapping": [
         {
-          "columnId": "name",
-          "DGaCMapping": "name"
-        },
-        {
-          "columnId": "msisdn",
+          "columnId": "caller_number",
           "DGaCMapping": "phoneNumber"
         },
         {
-          "columnId": "mailId",
-          "DGaCMapping": "eMail"
-        },
-        {
-          "columnId": "calledPartyNumber",
+          "columnId": "called_party_number",
           "DGaCMapping": "phoneNumber"
         },
         {
@@ -122,6 +104,76 @@
         }
       ],
       "documentation": "<h3>Uses</h3><p>Call detail records serve a variety of functions. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_service_provider\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">telephone service providers</a>, they are critical to the production of revenue, in that they provide the basis for the generation of telephone bills. For&nbsp;<a href=\"https://en.wikipedia.org/wiki/Law_enforcement\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">law enforcement</a>, call detail records provide a wealth of information that can help to identify suspects, in that they can reveal details as to an individual's relationships with associates, communication and behavior patterns, and even&nbsp;<a href=\"https://en.wikipedia.org/wiki/Telephone_tapping#Location_data\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"background-color: initial; color: rgb(11, 0, 128);\">location data</a>&nbsp;that can establish the whereabouts of an individual during the entirety of the call. For companies with PBX telephone systems, call detail records provide a means of tracking long-distance access, can monitor telephone usage by department or office, and can create listing of incoming and outgoing calls.</p>"
+    },
+        {
+      "id": "custprofile",
+      "name": "Customer Profile",
+      "description": "Demographic Profile",
+      "domain": "crm",
+      "dataStore": "crmStore",
+      "owner": "raja",
+      "searchTerms": [
+        {
+          "name": "Customer360"
+        },
+        {
+          "name": "Customer Demography"
+        },
+        {
+          "name": "Profile"
+        }
+      ],
+      "columns": [
+        {
+          "id": "customer_id",
+          "name": "Customer Id",
+          "type": "numeric"
+        },
+        {
+          "id": "customer_name",
+          "name": "customer_name",
+          "type": "string"
+        },
+        {
+          "id": "customer_contact",
+          "name": "customer_contact",
+          "type": "string"
+        },
+        {
+          "id": "customer_email",
+          "name": "customer_email",
+          "type": "string"
+        },
+        {
+          "id": "customer_segment",
+          "name": "customer_segment",
+          "type": "string"
+        },
+        {
+          "id": "customer_type",
+          "name": "customer_type",
+          "type": "string"
+        }
+      ],
+      "dgacMapping": [
+        {
+          "columnId": "customer_name",
+          "DGaCMapping": "name"
+        },
+        {
+          "columnId": "customer_contact",
+          "DGaCMapping": "phoneNumber"
+        },
+        {
+          "columnId": "customer_email",
+          "DGaCMapping": "eMail"
+        },
+        {
+          "columnId": "customer_type",
+          "DGaCMapping": "customerType"
+        }
+      ],
+      "documentation": ""
     },
     {
       "average_note": 0,
@@ -745,7 +797,16 @@
       "id": "crm",
       "name": "CRM",
       "description": "Customer Relationships Management",
-      "dataStores": []
+      "dataStores": [        
+        {
+        "id": "crmStore",
+        "name": "CRM Store",
+        "type": "BigQuery",
+        "connection-url": "fedgov.fedgovds",
+        "connection-user": "",
+        "connection-password": ""
+      }
+    ]
     },
     {
       "id": "mediation",
@@ -852,6 +913,10 @@
     {
       "id": "s3",
       "name": "S3"
+    },
+    {
+      "id": "BigQuery",
+      "name": "BigQuery"
     }
   ],
   "ontologyElementTypes": [
