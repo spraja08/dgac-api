@@ -30,8 +30,8 @@ public class BusinessCatalog {
         JsonArray gacConstructs = gacs.get("columnMasking").getAsJsonArray();
         String dgacId = null;
         for( int i=0; i<gacConstructs.size(); i++ ) {
-            if( gacConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) )
-                dgacId = gacConstructs.get( i ).getAsJsonObject().get( "dgac" ).getAsJsonArray().get( 0 ).getAsString();
+            if( gacConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsString().equals( roleId ) )
+                dgacId = gacConstructs.get( i ).getAsJsonObject().get( "dgac" ).getAsString();
         }
          if( dgacId != null ) {       
              String gac = com.aws.dgac.api.App.store.get( "dgac", dgacId ).get( "udf" ).getAsString();
@@ -54,8 +54,8 @@ public class BusinessCatalog {
 
         String maskingDgacId = null;
         for( int i=0; i<maskingConstructs.size(); i++ ) {
-            if( maskingConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) )
-                maskingDgacId = maskingConstructs.get( i ).getAsJsonObject().get( "dgac" ).getAsJsonArray().get( 0 ).getAsString();
+            if( maskingConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsString().equals( roleId ) )
+                maskingDgacId = maskingConstructs.get( i ).getAsJsonObject().get( "dgac" ).getAsString();
         }
         
         String masking = null;
@@ -66,7 +66,7 @@ public class BusinessCatalog {
         
         String filterValue = null;
         for( int i=0; i<filteringConstructs.size(); i++ ) {
-            if( filteringConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) ) {
+            if( filteringConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsString().equals( roleId ) ) {
                 filterValue = filteringConstructs.get( i ).getAsJsonObject().get( "filterValues" ).getAsString();
                 break;
             }   
@@ -83,7 +83,7 @@ public class BusinessCatalog {
         JsonArray gacConstructs = gacs.get("rowFiltering").getAsJsonArray();
         String filterValue = null;
         for( int i=0; i<gacConstructs.size(); i++ ) {
-            if( gacConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsJsonArray().contains( new JsonPrimitive( roleId ) ) ) {
+            if( gacConstructs.get( i ).getAsJsonObject().get( "roles" ).getAsString().equals( roleId ) ) {
                 filterValue = gacConstructs.get( i ).getAsJsonObject().get( "filterValues" ).getAsString();
                 filterValue = columnName + " != " + filterValue;  
                 break;

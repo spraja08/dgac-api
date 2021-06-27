@@ -86,7 +86,7 @@ public final class Interceptor {
             JsonArray colArr = tableMeta.get( "columns" ).getAsJsonArray();
             for( int j=0; j<colArr.size(); j++ ) {
                 String thisCol = colArr.get( j ).getAsJsonObject().get( "id" ).getAsString();
-                if( columns.contains( thisCol ) ) {
+                if( columns.contains( thisCol.toLowerCase() ) ) {
                     String bcMapping = technicalMetaData.getBusinessCatalogMapping(thisCol, thisTable);
                     aLine = new String[ 3 ];
                     aLine[ 0 ] = thisTable + "." + thisCol;
