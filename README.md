@@ -21,6 +21,6 @@ governance. As the adoption of this new paradigm accelerates
 (4), there is a critical pressure for reinventing a data governance
 solution that works at this scale and complexity, but without
 compromising the organizations’ agility in producing and
-democratizing data. This paper elaborates the data governance
-challengeindetail,aprescriptivesolutionandthe
-implementation approach.
+democratizing data. 
+
+This repo contains a core idea of how to address the data governace at scale challenge.
